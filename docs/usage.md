@@ -2,8 +2,12 @@
 
 ## Requirements
 
-Nextflow ≥ 24.04 and one of Docker, Singularity/Apptainer or Conda. No somalier
-installation needed — the container is pinned by the pipeline.
+Nextflow **≥ 25.04.0** and one of Docker, Singularity/Apptainer or Conda. No
+somalier installation needed — the container is pinned by the pipeline.
+
+25.04.0 is a hard floor. The nf-core `htslib/bgziptabix` module vendored here
+uses process-scope variables that the Nextflow parser in 24.10 and earlier
+rejects at compile time. Verified by bisection: 24.10.5 fails, 25.04.0 passes.
 
 ## Typical invocations
 

@@ -31,7 +31,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        NXF_VER: ["24.04.2", "latest-everything"]
+        # 25.04.0 is the documented floor; see manifest in nextflow.config
+        NXF_VER: ["25.04.0", "latest-everything"]
         profile: ["test", "test_stub"]
     steps:
       - uses: actions/checkout@v4
