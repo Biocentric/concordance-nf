@@ -1,0 +1,7 @@
+sample,subject,family,alignment,index,sex,batch
+normal_a,PATIENT01,FAM01,assets/test/normal_a.cram,assets/test/normal_a.cram.crai,female,run1
+tumor_a,PATIENT01,FAM01,assets/test/tumor_a.cram,assets/test/tumor_a.cram.crai,female,run1
+normal_b,PATIENT02,FAM01,assets/test/normal_b.cram,assets/test/normal_b.cram.crai,male,run1
+exome_a,PATIENT03,FAM03,assets/test/exome_a.cram,,male,run2
+unindexed_a,PATIENT04,FAM04,assets/test/unindexed.bam,,male,run2
+calls_a,PATIENT05,FAM05,assets/test/calls.vcf.gz,,unknown,run2

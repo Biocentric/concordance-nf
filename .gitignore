@@ -1,0 +1,6 @@
+work/
+results*/
+.nextflow*
+*.log
+__pycache__/
+*.pyc

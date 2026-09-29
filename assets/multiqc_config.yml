@@ -1,0 +1,18 @@
+# MultiQC config for concordance-nf.
+#
+# MultiQC parses somalier's own pairs/samples TSVs natively; the two
+# *_mqc.tsv files written by the report add the verdict columns on top.
+report_comment: >
+  Sample-identity QC. somalier sketches, all-vs-all relatedness, and verdicts
+  against the identity structure declared in the samplesheet. The full report
+  with the relatedness matrix is in <code>concordance/concordance_report.html</code>.
+
+report_section_order:
+  concordance_pairs:
+    order: 1000
+  concordance_samples:
+    order: 990
+  somalier:
+    order: 900
+
+export_plots: true

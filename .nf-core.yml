@@ -1,0 +1,9 @@
+repository_type: pipeline
+nf_core_version: 4.1.0
+org_path: Biocentric
+lint:
+  files_exist: false
+  files_unchanged: false
+  nextflow_config: false
+  multiqc_config: false
+  readme: false

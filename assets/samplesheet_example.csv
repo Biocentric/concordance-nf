@@ -1,0 +1,5 @@
+sample,subject,family,alignment,index,sex,batch
+WGS_2024_0117_L1,PATIENT01,FAM01,/data/cram/PATIENT01_wgs.cram,/data/cram/PATIENT01_wgs.cram.crai,female,2024-11-plate3
+WES_2024_0193,PATIENT01,FAM01,/data/bam/PATIENT01_wes.bam,,female,2024-12-plate1
+WGS_2024_0118_L1,PATIENT02,FAM01,/data/cram/PATIENT02_wgs.cram,/data/cram/PATIENT02_wgs.cram.crai,male,2024-11-plate3
+WGS_2024_0119_L1,PATIENT03,FAM03,/data/cram/PATIENT03_wgs.cram,/data/cram/PATIENT03_wgs.cram.crai,male,2024-11-plate3

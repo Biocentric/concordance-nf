@@ -1,0 +1,8 @@
+sample,subject,family,alignment,index,sex,batch
+s_a,P1,P1,s_a.vcf.gz,,female,fixture
+s_b,P1,P1,s_b.vcf.gz,,female,fixture
+s_c,P2,P2,s_c.vcf.gz,,male,fixture
+s_d,P3,P3,s_d.vcf.gz,,male,fixture
+s_e,P4,P4,s_e.vcf.gz,,male,fixture
+s_f,P5,P5,s_f.vcf.gz,,female,fixture
+s_g,P5,P5,s_g.vcf.gz,,female,fixture

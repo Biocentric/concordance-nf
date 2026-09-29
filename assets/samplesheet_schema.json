@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/Biocentric/concordance-nf/main/assets/samplesheet_schema.json",
+    "title": "concordance-nf samplesheet schema",
+    "description": "One row per sequenced library. `subject` carries the identity expectation the pipeline tests: rows sharing a subject must come back identical, rows with different subjects must not.",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$",
+                "description": "Unique library/run identifier. Must be unique across the sheet.",
+                "errorMessage": "sample must be unique and contain only A-Z, a-z, 0-9, dot, underscore, dash."
+            },
+            "subject": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$",
+                "description": "The individual this sample is supposed to belong to. Rows sharing a subject must be genotypically identical; rows with different subjects must not be. Use the sample id itself when every row is a distinct individual."
+            },
+            "alignment": {
+                "type": "string",
+                "pattern": "^\\S+\\.(bam|cram|sam|vcf|vcf\\.gz|bcf|bcf\\.gz|gvcf|gvcf\\.gz|g\\.vcf|g\\.vcf\\.gz)$",
+                "format": "file-path",
+                "description": "BAM/CRAM preferred. Sketching a jointly called VCF inherits the information sharing joint calling introduces across samples, which inflates apparent concordance."
+            },
+            "index": {
+                "type": "string",
+                "pattern": "^\\S+\\.(bai|crai|csi|tbi)$",
+                "format": "file-path",
+                "description": "Optional. Generated on the fly when omitted, except for BCF, where it is required."
+            },
+            "family": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$",
+                "description": "Optional. Relatedness between different subjects in the same family is expected and not flagged. Defaults to the subject, i.e. every subject is its own family."
+            },
+            "sex": {
+                "type": "string",
+                "enum": ["male", "female", "unknown", "m", "f", "u", "M", "F", "U", "1", "2", ""],
+                "description": "Optional. Checked against the sex somalier infers from X heterozygosity and Y depth."
+            },
+            "batch": {
+                "type": "string",
+                "description": "Optional free-text grouping label, carried through to the report."
+            }
+        },
+        "required": ["sample", "subject", "alignment"]
+    }
+}

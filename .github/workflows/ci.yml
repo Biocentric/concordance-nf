@@ -1,0 +1,55 @@
+name: CI
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+  release:
+    types: [published]
+
+env:
+  NXF_ANSI_LOG: false
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  report-unit-test:
+    name: Verdict engine unit test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # stdlib only, so no install step
+      - run: python3 tests/test_report.py
+
+  pipeline:
+    name: ${{ matrix.profile }} | Nextflow ${{ matrix.NXF_VER }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        NXF_VER: ["24.04.2", "latest-everything"]
+        profile: ["test", "test_stub"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nf-core/setup-nextflow@v2
+        with:
+          version: "${{ matrix.NXF_VER }}"
+      - name: Run pipeline
+        run: |
+          if [ "${{ matrix.profile }}" = "test_stub" ]; then
+            nextflow run . -profile ${{ matrix.profile }},docker -stub --outdir ./results
+          else
+            nextflow run . -profile ${{ matrix.profile }},docker --outdir ./results
+          fi
+
+  e2e:
+    name: End-to-end verdicts vs real somalier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nf-core/setup-nextflow@v2
+      - run: bash tests/run_e2e.sh
